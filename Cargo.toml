@@ -1,0 +1,36 @@
+[package]
+name = "rp2040-usb-sound-card"
+version = "0.1.0"
+edition = "2018"
+resolver = "2"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+cortex-m = "0.7.2"
+cortex-m-rt = "0.7"
+cortex-m-rtic = "0.6.0-alpha.5"
+cortex-m-semihosting = "0.3.7"
+embedded-hal ="0.2.5"
+embedded-time = "0.12.0"
+nb = "1.0"
+#panic-halt = "0.2.0"
+panic-semihosting = "0.5"
+#panic-write = "0.1.0"
+pio = { git = "https://github.com/rp-rs/pio-rs.git", branch = "main" }
+pio-proc = { git = "https://github.com/rp-rs/pio-rs.git", branch = "main" }
+#rp2040-hal = { git = "https://github.com/rp-rs/rp-hal.git", features = ["rt"] }
+rp2040-hal = { path = "../rp-hal/rp2040-hal", features = ["rt"] }
+rp2040-boot2 = "0.1.2"
+stable_deref_trait = { version = "1.2.0", default-features = false }
+systick-monotonic = "0.1.0-alpha.0"
+usb-device = { version = "0.2.8", features = ["control-buffer-256"] }
+void = { version = "*", default_features = false }
+
+[patch.crates-io]
+usb-device = { path = "../usb-device" }
+
+[profile]
+[profile.release]
+debug = true
+lto = true
